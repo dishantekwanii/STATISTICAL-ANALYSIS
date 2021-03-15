@@ -1,0 +1,66 @@
+#Code for Multiple Monte Carlo Games
+n_stay <- 0
+#intializes the stay to 0
+n_switch <- 0
+#initializes the switch to 0
+n_vehicle <- 0
+#initializes the variable vehicle to 0
+n_animal <- 0
+#initializes the variable animal to 0
+for (i in 1:100) {
+#Here the loop begins from 1 to 100
+door <- c(1, 2, 3)
+#this code creates a vector named door containing the numbers 1, 2, 3.
+cardoor <- sample(door, 1)
+# the variable, cardoor randomly selects one doors which will have a car behind it
+choice <- sample(door, 1)
+#this variable indicates which door was chosen by the contestant
+goatdoors <- setdiff(door, cardoor)
+#this vector holds values corresponding to the goats
+reveal_options <- setdiff(goatdoors, choice)
+#we use this method to reveal options we have.
+#now we have the situation where we have to choose between two goats randomly and we assign the same to reveal. but we do this under if else
+loop because there are multiple options.
+if (choice == cardoor) {
+reveal <- sample(reveal_options, 1)
+}
+#this reveals option 1
+else {
+reveal <-
+reveal_options
+}
+#now there is only single elementwhich we assign to reveal
+# now since we have two unrevealed doors left we identify it using
+remaining_doors <- setdiff(door, reveal)
+# this variable helps player in the final choice of the door if the contestant switches
+newchoice <- setdiff(remaining_doors, choice)
+# we use if else loop to record the number times a player stays or switches by adding to n_stay or n_switch which we initialized to zero in
+the beginning
+if (choice == cardoor) {
+print ("Stay: you got a car")
+n_vehicle <- n_vehicle + 1
+n_stay <- n_stay + 1
+}
+else{
+print("Stay: You got a goat")
+n_animal <- n_animal + 1
+}
+if (newchoice == cardoor) {
+print ("Switch: you got a car")
+n_vehicl <- n_vehicl + 1
+n_switch <- n_switch + 1
+}
+else {
+print("Switch: You got a goat")
+n_anima <- n_anima + 1
+}
+}
+# and finally we print the number of times a player stays and switches (out of hundered) and the number of times a player gets a goat or a car
+(result)
+.
+print(n_stay / 100)
+print(n_switch / 100)
+print ("you got a car this many time times:")
+print(n_vehicle)
+print ("you got a goat this many times.")
+print(n_animal)

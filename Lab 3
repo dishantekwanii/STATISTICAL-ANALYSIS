@@ -1,0 +1,58 @@
+#PART1 (a):
+normPop<- rnorm(5000,5,4)
+
+exPop<- rexp(5000,1.2)
+
+#PART1 (b):
+norm4<- sample(normPop,40)
+norm10<- sample(normPop,100)
+exp4<- sample(exPop,40)
+exp10<- sample(exPop,100)
+
+# Part2 (a):
+meanNorm4<- mean(norm4)
+meanExp4<- mean(exp4)
+sdNorm4<- sd(norm4)
+sdExp4<- sd(exp4)
+sdNormPop<-sd(normPop)
+sdexPop<-sd(exPop)
+t_score<- qt(0.975,49)
+Z_score<- qnorm(0.975)
+
+normLeft_Z <- meanNorm4-Z_score*sdNormPop
+normRight_Z <- meanNorm4+Z_score*sdNormPop
+normLeft_t <- meanNorm4-t_score*sdNorm4
+normRight_t<- meanNorm4+t_score*sdNorm4
+exLeft_Z <- meanExp4-Z_score*sdexPop
+exRight_Z <-meanExp4+Z_score*sdexPop
+exLeft_t <- meanExp4-t_score*sdExp4
+exRight_t<- meanExp4+t_score*sdExp4
+
+# PART3:
+qqnorm(normPop)
+qqline(normPop)
+hist(normPop, freq = FALSE)
+xfit <- seq(min(normPop), max(normPop), length = 5000) 
+yfit <- dnorm(xfit, mean = mean(normPop), sd = sd(normPop))
+lines(xfit, yfit)
+
+qqnorm(exPop)
+qqline(exPop)
+hist(exPop, freq = FALSE)
+xfit <- seq(min(exPop), max(exPop), length = 5000) 
+yfit <- dnorm(xfit, mean = mean(exPop), sd = sd(exPop))
+lines(xfit, yfit)
+
+qqnorm(norm4)
+qqline(norm4)
+hist(norm4, freq = FALSE)
+xfit <- seq(min(norm4), max(norm4), length = 40) 
+yfit <- dnorm(xfit, mean = mean(norm4), sd = sd(norm4))
+lines(xfit, yfit)
+
+qqnorm(exp4)
+qqline(exp4)
+hist(exp4, freq = FALSE)
+xfit <- seq(min(exp4), max(exp4), length = 40) 
+yfit <- dnorm(xfit, mean = mean(exp4), sd = sd(exp4))
+lines(xfit, yfit)
